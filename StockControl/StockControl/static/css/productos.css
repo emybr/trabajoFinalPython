@@ -1,0 +1,55 @@
+body {
+    background-color: black;
+}
+
+.title-producto {
+    text-align: center;
+    margin-top: 80px;
+    color: rgb(174, 173, 173);
+}
+
+.table-producto {
+    margin: 0 auto;
+    margin-top: 50px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgb(174, 173, 173);
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+button a {
+    text-decoration: none;
+    
+}
+
+.boton-producto{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+
+button{
+    border-radius: 20px;
+    background-color: #d6d6d6;
+    color: black;
+    padding: 3px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 18px 2px;
+    cursor: pointer;
+    text-decoration: none;
+}

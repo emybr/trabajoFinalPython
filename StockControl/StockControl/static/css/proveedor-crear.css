@@ -1,0 +1,78 @@
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    width: 300px;
+    margin: 5% auto ;
+    padding: 20px;
+    background-color: rgb(174, 173, 173);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button a {
+    text-decoration: none;
+    
+}
+.boton-proveedor{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    border-radius: 20px;
+    background-color: #d6d6d6;
+    color: black;
+    padding: 3px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 18px 2px;
+    cursor: pointer;
+    text-decoration: none;
+}

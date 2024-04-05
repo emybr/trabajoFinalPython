@@ -1,25 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear un proveedor</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/proveedor-crear.css' %}">
 </head>
 <body>
-    <h1>Crear proveedor</h1>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <label for="nombre"></label>
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-        <label for="apellido"></label>
-        <input type="text" name="apellido" id="apellido" placeholder="Apellido">
-        <label for="dni"></label>
-        <input type="number" name="dni" id="dni" placeholder="DNI">
-        <input type="submit" value="Crear">
-    </form>
-    <button><a href="{% url 'index' %}">HOME</button>
-    
+    <div class="card">
+        <h1>Crear proveedor</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="input-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+            </div>
+            <div class="input-group">
+                <label for="dni">DNI:</label>
+                <input type="number" name="dni" id="dni" placeholder="DNI">
+            </div>
+            <input type="submit" value="Crear">
+        </form>
+    </div>
+    <div class="boton-proveedor">
+        <button><a href="{% url 'index' %}">HOME</a></button>
+    </div>
 </body>
 </html>

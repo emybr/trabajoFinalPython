@@ -59,24 +59,6 @@ def producto_list(request):
     productos = Producto.objects.all()
     return render(request, 'productos_list.html', {'productos': productos})
 
-# def producto_create(request):
-#     if request.method == 'POST':
-#         nombre = request.POST.get('nombre')
-#         precio = request.POST.get('precio')
-#         stock = request.POST.get('stock')
-#         proveedor = request.POST.get('proveedor')
-#         if nombre and precio and stock and proveedor:  # Verifica si los campos no están vacíos
-#             producto = Producto.objects.create(
-#                 nombre=nombre,
-#                 precio=precio,
-#                 stock=stock,
-#                 proveedor=proveedor
-#             )
-#             return render(request, 'producto_create.html', {'produc': producto})
-#         else:
-#             error_message = "Por favor, complete todos los campos."
-#             return render(request, 'producto_create.html', {'error_message': error_message})
-#     return render(request, 'producto_create.html')
 
 def producto_create(request):
     if request.method == 'POST':
