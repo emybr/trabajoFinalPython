@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Prductos</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <label for="precio"></label>
+        <input type="number" name="precio" id="precio" placeholder="Precio">
+        <label for="stock"></label>
+        <input type="number" name="stock" id="stock" placeholder="stock">
+        <input type="submit" value="Crear">
+    </form>
+    <div>
+        <button><a href="{% url 'index' %}">HOME</button>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear un producto</title>
+</head>
+<body>
+    <h1>Crear producto</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre"><br>
+
+        <label for="precio">Precio:</label>
+        <input type="number" name="precio" id="precio" placeholder="Precio"><br>
+
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" id="stock" placeholder="Stock"><br>
+
+        <label for="proveedor">Proveedor:</label>
+        <select name="proveedor" id="proveedor">
+            {% for proveedor in proveedores %}
+                <option value="{{ proveedor.id }}">{{ proveedor }}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Crear">
+    </form>
+    
+    <div>
+        <button><a href="{% url 'index' %}">HOME</a></button>
+    </div>
+</body>
+</html>

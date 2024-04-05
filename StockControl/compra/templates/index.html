@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="title">
+        <h1>StockControl</h1>
+    </div>
+    <div class="img-inicio">
+        <img src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/phyton.png?alt=media&token=e1af259e-ed3b-448b-8c21-ad91b097a215" alt="logo-pyton">
+    </div>
+    <div class="botones-contenedor">
+        <a href="{% url 'proveedor_list' %}">
+            <button>Proveedor</button>
+        </a>
+        <a href="{% url 'producto_list' %}">
+            <button>Productos</button>
+        </a>
+        <a href="{% url 'proveedor_create' %}">
+            <button>Crear proveedor</button>
+        </a>
+        <a href="{% url 'producto_create' %}">
+            <button>Crear producto</button>
+        </a>
+    </div>
+</body>
+</html>
+
+

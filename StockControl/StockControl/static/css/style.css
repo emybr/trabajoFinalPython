@@ -1,0 +1,40 @@
+body{
+    background-color: black;
+}
+
+.title{
+    text-align: center;
+    margin-top: 80px;
+    color: rgb(174, 173, 173);
+}
+
+.img-inicio{
+    text-align: center;
+}
+
+.botones-contenedor{
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 20px;
+
+    
+}
+
+button{
+    border-radius: 20px;
+    background-color: #d6d6d6;
+    color: black;
+    padding: 6px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-decoration: none;
+   
+}
+
+a{
+    text-decoration: none;
+}

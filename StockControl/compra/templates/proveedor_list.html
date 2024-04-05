@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de proveedores</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/proveedor.css' %}">
+</head>
+<body>
+    <div class="title-proveedor">
+        <h1>Lista de proveedores</h1>
+    </div>
+    <div class="table-proveedor">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proveedor in proveedores %}
+                <tr>
+                    <td>{{ proveedor.nombre }}</td>
+                    <td>{{ proveedor.apellido }}</td>
+                    <td>{{ proveedor.dni }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="img-proveedores">
+        <img src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/Captura%20de%20pantalla%202024-04-04%20a%20la(s)%2010.24.49%E2%80%AFp.%C2%A0m..png?alt=media&token=a9815777-8776-49d0-abe7-0a66fac7f5a9" alt="avatar hombre">
+        <img src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/Captura%20de%20pantalla%202024-04-04%20a%20la(s)%2010.25.11%E2%80%AFp.%C2%A0m..png?alt=media&token=c3d36aba-fc0f-4841-a627-8dcd1a23e6ca" alt="avatar mujer">
+    </div>
+    <div class="boton-proveedor">
+        <button><a href="{% url 'index' %}">HOME</a></button>
+    </div>
+</body>
+</html>
