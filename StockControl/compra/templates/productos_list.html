@@ -8,8 +8,8 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/productos.css' %}">
 </head>
 <body>
-    <div class="title-producto">
-        <h1>Lista de productos</h1>
+    <div class="img-proveedores">
+        <img  src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/lista%20producto.png?alt=media&token=55682076-319f-4830-acb0-f7d5f77efd19">
     </div>
     <div class="table-producto">
         <table>
@@ -23,6 +23,7 @@
                 </tr>
             </thead>
             <tbody>
+                <h1 class="title-producto">Lista de productos</h1>
                 {% for producto in productos %}
                 <tr>
                     <td>{{ producto.nombre }}</td>

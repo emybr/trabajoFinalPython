@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/producto_editar.css' %}">
 </head>
 <body>
+    <div class="img-producto">
+        <img src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/editar.png?alt=media&token=0ef299e5-3e8f-4ad6-bd75-ca44f9c237ae" alt="imagen-editar-producto">
+    </div>
     <div class="card">
         <h1 class="title-producto">Editar Producto</h1>
         <form action="{% url 'producto_editar' producto.pk %}" method="post">

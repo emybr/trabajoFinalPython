@@ -4,13 +4,13 @@ body {
 
 .title-proveedor {
     text-align: center;
-    margin-top: 40px;
-    color: rgb(174, 173, 173);
+    margin-top: 4px;
+    color: rgb(19, 18, 18);
 }
 
 .table-proveedor {
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 15px;
     border-radius: 20px;
     padding: 20px;
     background-color: rgb(174, 173, 173);
@@ -46,19 +46,21 @@ button{
 button a {
     text-decoration: none;
     
+    
 }
 
 .img-proveedores{
-    margin-top: 2%;
+    margin-top: 3%;
     display: flex;
     justify-content: center;
-    height: 300px;
+    height: 200px;
 }
 
 .boton-proveedor{
     margin-top: 2%;
     display: flex;
     justify-content: center;
+    
 }
 
 .boton_eliminar{
@@ -88,3 +90,4 @@ button a {
     cursor: pointer;
     text-decoration: none
 }
+

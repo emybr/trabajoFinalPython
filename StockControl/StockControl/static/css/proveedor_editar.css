@@ -43,3 +43,15 @@ a {
     display: block;
     margin-top: 10px;
 }
+
+.img-proveedor{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    mask-image: linear-gradient(
+        black 80%,
+        transparent
+    );
+}

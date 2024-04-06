@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/proveedor_editar.css' %}">
 </head>
 <body>
+    <div class="img-proveedor">
+        <img src="https://firebasestorage.googleapis.com/v0/b/imagenes-memo.appspot.com/o/editar2.png?alt=media&token=3499545c-874f-4e50-855c-afe29ec70391" alt="imagen-editar-proveedor">
+    </div>
     <div class="card">
         <h1 class="title">Editar Proveedor</h1>
         <form action="{% url 'proveedor_editar' proveedor.pk %}" method="post">

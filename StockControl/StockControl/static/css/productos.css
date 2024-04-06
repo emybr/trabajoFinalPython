@@ -4,13 +4,12 @@ body {
 
 .title-producto {
     text-align: center;
-    margin-top: 80px;
-    color: rgb(174, 173, 173);
+    color: rgb(9, 9, 9);
 }
 
 .table-producto {
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 25px;
     border-radius: 20px;
     padding: 20px;
     background-color: rgb(174, 173, 173);
@@ -81,4 +80,11 @@ button{
     margin: 4px 1px;
     cursor: pointer;
     text-decoration: none
+}
+
+.img-proveedores{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    height: 190px;
 }
