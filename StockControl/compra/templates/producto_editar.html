@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/producto_editar.css' %}">
+</head>
+<body>
+    <div class="card">
+        <h1 class="title-producto">Editar Producto</h1>
+        <form action="{% url 'producto_editar' producto.pk %}" method="post">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}"><br>
+            
+            <label for="precio">Precio:</label><br>
+            <input type="number" id="precio" name="precio" value="{{ producto.precio }}"><br>
+            
+            <label for="stock">Stock:</label><br>
+            <input type="number" id="stock" name="stock" value="{{ producto.stock }}"><br>
+
+            <div class="form-group">
+                <label for="proveedor">Proveedor:</label>
+                <select name="proveedor" id="proveedor">
+                    {% for proveedor in proveedores %}
+                        <option value="{{ proveedor.id }}" {% if proveedor.id == producto.proveedor.id %} selected {% endif %}>{{ proveedor.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <input type="submit" value="Guardar Cambios">
+        </form>
+        <a href="{% url 'producto_list' %}">Volver a la lista de productos</a>
+    </div>
+</body>
+</html>
+

@@ -18,6 +18,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>DNI</th>
+                    <th>Acciones</th> 
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,13 @@
                     <td>{{ proveedor.nombre }}</td>
                     <td>{{ proveedor.apellido }}</td>
                     <td>{{ proveedor.dni }}</td>
+                    <td>
+                        <form action="{% url 'proveedor_eliminar' proveedor.pk %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input class="boton_eliminar" type="submit" name="eliminar" value="Eliminar">
+                        </form>
+                        <a class="boton_editar" href="{% url 'proveedor_editar' proveedor.pk %}">Editar</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

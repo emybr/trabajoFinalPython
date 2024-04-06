@@ -60,3 +60,31 @@ button a {
     display: flex;
     justify-content: center;
 }
+
+.boton_eliminar{
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 1px;
+    cursor: pointer;
+    text-decoration: none
+}
+
+.boton_editar{
+    background-color: rgb(7, 99, 38);
+    color: white;
+    border-radius: 20px;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 1px;
+    cursor: pointer;
+    text-decoration: none
+}

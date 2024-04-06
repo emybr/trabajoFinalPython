@@ -1,35 +1,8 @@
-# from django.shortcuts import render
-# from .models import Proveedor, Producto
-
-# def produc(request):
-#     return render(request, 'producs.html')
-
-# def proveedor_list(request):
-#     proveedores = Proveedor.objects.all()
-#     return render(request, 'proveedor_list.html', {'proveedores': proveedores})
-
-# def proveedor_create(request):
-#     if request.method == 'POST':
-#         nombre = request.POST.get('nombre')
-#         apellido = request.POST.get('apellido')
-#         dni = request.POST.get('dni')
-#         proveedor = Proveedor.objects.create(
-#             nombre=nombre,
-#             apellido=apellido,
-#             dni=dni
-#         )
-#         return render(request, 'proveedor_create.html', {'proveedor': proveedor})
-#     return render(request, 'proveedor_create.html')
-
-
-# def producto_list(request):
-#     produc = Producto.objects.all()
-#     return render(request, 'producs_list.html', {'produc': produc})
-    
-
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Proveedor, Producto
+from django.urls import reverse
 
 def index(request):
     return render(request, 'index.html')
@@ -43,7 +16,7 @@ def proveedor_create(request):
         nombre = request.POST.get('nombre')
         apellido = request.POST.get('apellido')
         dni = request.POST.get('dni')
-        if nombre and apellido and dni:  # Verifica si los campos no están vacíos
+        if nombre and apellido and dni:  
             proveedor = Proveedor.objects.create(
                 nombre=nombre,
                 apellido=apellido,
@@ -81,3 +54,44 @@ def producto_create(request):
     else:
         proveedores = Proveedor.objects.all()
         return render(request, 'producto_create.html', {'proveedores': proveedores})
+    
+def producto_eliminar(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == 'POST':
+        if 'eliminar' in request.POST:  
+            producto.delete()
+            return HttpResponseRedirect(reverse('producto_list'))
+        elif 'editar' in request.POST: 
+            return HttpResponseRedirect(reverse('producto_editar', kwargs={'pk': pk}))
+    return render(request, 'producto_eliminar.html', {'producto': producto})
+
+def producto_editar(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    proveedores = Proveedor.objects.all()  
+    if request.method == 'POST':
+        producto.nombre = request.POST.get('nombre')
+        producto.precio = request.POST.get('precio')
+        producto.stock = request.POST.get('stock')
+        proveedor_id = request.POST.get('proveedor')
+        producto.proveedor = Proveedor.objects.get(id=proveedor_id)  
+        producto.save()
+        return HttpResponseRedirect(reverse('producto_list'))
+    return render(request, 'producto_editar.html', {'producto': producto, 'proveedores': proveedores})
+
+
+def proveedor_eliminar(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    if request.method == 'POST':
+        proveedor.delete()
+        return HttpResponseRedirect(reverse('proveedor_list'))
+    return render(request, 'proveedor_eliminar.html', {'proveedor': proveedor})
+
+def proveedor_editar(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    if request.method == 'POST':
+        proveedor.nombre = request.POST.get('nombre')
+        proveedor.apellido = request.POST.get('apellido')
+        proveedor.dni = request.POST.get('dni')
+        proveedor.save()
+        return HttpResponseRedirect(reverse('proveedor_list'))
+    return render(request, 'proveedor_editar.html', {'proveedor': proveedor})

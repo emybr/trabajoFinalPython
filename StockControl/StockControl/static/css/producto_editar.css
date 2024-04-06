@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(4, 4, 4);
+}
+
+.title-producto {
+    color: rgb(3, 3, 3);
+    text-align: center;
+}
+.card {
+    background-color: gray;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 50px auto 0;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+input[type="submit"] {
+    background-color: #096f03;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+a {
+    color: #ff0000;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}

@@ -19,6 +19,7 @@
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Proveedor</th>
+                    <th>Acciones</th> 
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,13 @@
                     <td>{{ producto.precio }}</td>
                     <td>{{ producto.stock }}</td>
                     <td>{{ producto.proveedor.nombre }}</td>
+                    <td>
+                        <form action="{% url 'producto_eliminar' producto.pk %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input class="boton_eliminar" type="submit" name="eliminar" value="Eliminar">
+                            <input class="boton_editar" type="submit" name="editar" value="Editar">
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
