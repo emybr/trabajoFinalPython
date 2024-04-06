@@ -13,7 +13,7 @@ body {
     margin-top: 15px;
     border-radius: 20px;
     padding: 20px;
-    background-color: rgb(174, 173, 173);
+    background-color: rgb(246, 245, 245);
     color: black;
 }
 
@@ -45,8 +45,7 @@ button{
 
 button a {
     text-decoration: none;
-    
-    
+    color: inherit;
 }
 
 .img-proveedores{

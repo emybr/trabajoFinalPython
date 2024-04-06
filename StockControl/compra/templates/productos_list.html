@@ -33,8 +33,8 @@
                     <td>
                         <form action="{% url 'producto_eliminar' producto.pk %}" method="post" style="display: inline;">
                             {% csrf_token %}
-                            <input class="boton_eliminar" type="submit" name="eliminar" value="Eliminar">
                             <input class="boton_editar" type="submit" name="editar" value="Editar">
+                            <input class="boton_eliminar" type="submit" name="eliminar" value="Eliminar">
                         </form>
                     </td>
                 </tr>

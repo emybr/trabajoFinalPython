@@ -43,6 +43,7 @@ input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
+    font-size: 13px;
 }
 
 input[type="submit"]:hover {
@@ -56,6 +57,7 @@ input[type="submit"]:hover {
 
 button a {
     text-decoration: none;
+    color: inherit;
 }
 
 
@@ -83,4 +85,8 @@ button{
         black 80%,
         transparent
     );
+}
+
+.error {
+    color: red;
 }

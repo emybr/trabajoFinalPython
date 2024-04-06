@@ -13,6 +13,9 @@
     </div>
     <div class="card">
         <h1>Crear proveedor</h1>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
         <form action="" method="POST">
             {% csrf_token %}
             <div class="input-group">

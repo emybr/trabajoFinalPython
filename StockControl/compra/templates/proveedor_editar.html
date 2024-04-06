@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Proveedor</title>
+  
     <link rel="stylesheet" type="text/css" href="{% static 'css/proveedor_editar.css' %}">
 </head>
 <body>
@@ -13,6 +14,9 @@
     </div>
     <div class="card">
         <h1 class="title">Editar Proveedor</h1>
+        {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+        {% endif %}
         <form action="{% url 'proveedor_editar' proveedor.pk %}" method="post">
             {% csrf_token %}
             <label for="nombre">Nombre:</label><br>
@@ -26,7 +30,7 @@
             
             <input type="submit" value="Guardar Cambios">
         </form>
-        <a href="{% url 'proveedor_list' %}">Volver a la lista de proveedores</a>
+        <button class="boton-volver"><a href="{% url 'proveedor_list' %}">Volver proveedores</a></button>
     </div>
 </body>
 </html>

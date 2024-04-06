@@ -13,6 +13,9 @@
     </div>
     <div class="card">
         <h1 class="title-producto">Editar Producto</h1>
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
         <form action="{% url 'producto_editar' producto.pk %}" method="post">
             {% csrf_token %}
             <label for="nombre">Nombre:</label><br>
@@ -35,7 +38,7 @@
             
             <input type="submit" value="Guardar Cambios">
         </form>
-        <a href="{% url 'producto_list' %}">Volver a la lista de productos</a>
+        <button class="boton-volver"><a href="{% url 'producto_list' %}">Volver producto</a></button>
     </div>
 </body>
 </html>

@@ -2,7 +2,7 @@ body{
     background-color: black;
 }
 .card {
-    background-color: gray;
+    background-color: rgb(255, 254, 254);
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
@@ -38,10 +38,9 @@ input[type="submit"] {
 
 
 a {
-    color: #ff0000;
     text-decoration: none;
     display: block;
-    margin-top: 10px;
+    color: inherit;
 }
 
 .img-proveedor{
@@ -53,5 +52,23 @@ a {
     mask-image: linear-gradient(
         black 80%,
         transparent
-    );
+        );
+    }
+    
+    .boton-volver{
+        background-color: rgb(10, 86, 250);
+        color: rgb(248, 245, 245);
+        border-radius: 10px;
+        padding: 8px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 1px;
+        cursor: pointer;
+        text-decoration: none
+    }
+
+.error {
+    color: red;
 }
