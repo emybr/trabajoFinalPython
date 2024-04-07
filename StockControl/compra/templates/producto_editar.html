@@ -14,7 +14,7 @@
     <div class="card">
         <h1 class="title-producto">Editar Producto</h1>
         {% if error_message %}
-        <p>{{ error_message }}</p>
+        <p class="error">{{ error_message }}</p>
         {% endif %}
         <form action="{% url 'producto_editar' producto.pk %}" method="post">
             {% csrf_token %}

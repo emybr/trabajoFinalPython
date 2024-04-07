@@ -20,14 +20,21 @@ def proveedor_create(request):
         nombre = request.POST.get('nombre')
         apellido = request.POST.get('apellido')
         dni = request.POST.get('dni')
+
+        if dni and int(dni) < 0:
+            error_message = "El DNI no puede ser un número negativo."
+            return render(request, 'proveedor_create.html', {'error_message': error_message, 'nombre': nombre, 'apellido': apellido, 'dni': dni})
+        
+        if len(nombre) > 50 or len(apellido) > 50:
+            error_message = "El nombre y el apellido no deben superar los 50 caracteres cada uno."
+            return render(request, 'proveedor_create.html', {'error_message': error_message, 'nombre': nombre, 'apellido': apellido, 'dni': dni})
         
         if nombre and apellido and dni:
             try:
                 dni = int(dni)
             except ValueError:
                 error_message = "El DNI debe ser un número válido."
-                return render(request, 'proveedor_create.html', {'error_message': error_message})
-
+                return render(request, 'proveedor_create.html', {'error_message': error_message, 'nombre': nombre, 'apellido': apellido, 'dni': dni})
             proveedor = Proveedor.objects.create(
                 nombre=nombre,
                 apellido=apellido,
@@ -36,9 +43,11 @@ def proveedor_create(request):
             return render(request, 'proveedor_create.html', {'proveedor': proveedor})
         else:
             error_message = "Por favor, complete todos los campos."
-            return render(request, 'proveedor_create.html', {'error_message': error_message})
+            return render(request, 'proveedor_create.html', {'error_message': error_message, 'nombre': nombre, 'apellido': apellido, 'dni': dni})
     
     return render(request, 'proveedor_create.html')
+
+
 
 
 def producto_list(request):
@@ -58,18 +67,36 @@ def producto_create(request):
         precio = request.POST.get('precio')
         stock = request.POST.get('stock')
         proveedor_id = request.POST.get('proveedor')
+
+        nombre_guardado = nombre
+        precio_guardado = precio
+        stock_guardado = stock
+        proveedor_id_guardado = proveedor_id
         
         if nombre and precio and stock and proveedor_id:
             try:
+                precio = precio.replace(',', '.')  
                 precio = float(precio)
-                stock = int(stock)
+                if precio <= 0:
+                    raise ValueError
             except ValueError:
-                error_message = "El precio y el stock deben ser números válidos."
-                return render(request, 'producto_create.html', {'error_message': error_message})
+                error_message = "El precio debe ser un número válido y mayor que cero."
+                proveedores = Proveedor.objects.all()
+                return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
             
-            if precio <= 0 or stock < 0:
-                error_message = "El precio y el stock deben ser mayores que cero."
-                return render(request, 'producto_create.html', {'error_message': error_message})
+            try:
+                stock = int(stock)
+                if stock < 0:
+                    raise ValueError
+            except ValueError:
+                error_message = "El stock debe ser un número válido y mayor o igual que cero."
+                proveedores = Proveedor.objects.all()
+                return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
+            
+            if len(nombre) > 50:
+                error_message = "El nombre no puede exceder los 50 caracteres."
+                proveedores = Proveedor.objects.all()
+                return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
             
             proveedor = get_object_or_404(Proveedor, id=proveedor_id)
             
@@ -83,7 +110,7 @@ def producto_create(request):
         else:
             error_message = "Por favor, complete todos los campos."
             proveedores = Proveedor.objects.all()
-            return render(request, 'producto_create.html', {'error_message': error_message, 'proveedores': proveedores})
+            return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
     else:
         proveedores = Proveedor.objects.all()
         return render(request, 'producto_create.html', {'proveedores': proveedores})
@@ -109,16 +136,26 @@ def producto_editar(request, pk):
         stock = request.POST.get('stock')
         proveedor_id = request.POST.get('proveedor')
         
+        
+        if len(nombre) > 50:
+            error_message = "El nombre no debe superar los 50 caracteres."
+            return render(request, 'producto_editar.html', {'error_message': error_message, 'producto': producto, 'proveedores': proveedores})
+        
+        if precio and float(precio) <= 0:
+            error_message = "El precio debe ser mayor que cero."
+            return render(request, 'producto_editar.html', {'error_message': error_message, 'producto': producto, 'proveedores': proveedores})
+        
+
+        if stock and int(stock) < 0:
+            error_message = "El stock no puede ser negativo."
+            return render(request, 'producto_editar.html', {'error_message': error_message, 'producto': producto, 'proveedores': proveedores})
+        
         if nombre and precio and stock and proveedor_id:
             try:
                 precio = float(precio)
                 stock = int(stock)
             except ValueError:
                 error_message = "El precio y el stock deben ser números válidos."
-                return render(request, 'producto_editar.html', {'error_message': error_message, 'producto': producto, 'proveedores': proveedores})
-            
-            if precio <= 0 or stock < 0:
-                error_message = "El precio y el stock deben ser mayores que cero."
                 return render(request, 'producto_editar.html', {'error_message': error_message, 'producto': producto, 'proveedores': proveedores})
             
             proveedor = get_object_or_404(Proveedor, id=proveedor_id)
@@ -135,12 +172,15 @@ def producto_editar(request, pk):
     return render(request, 'producto_editar.html', {'producto': producto, 'proveedores': proveedores})
 
 
+
 def proveedor_eliminar(request, pk):
     proveedor = get_object_or_404(Proveedor, pk=pk)
     if request.method == 'POST':
         proveedor.delete()
         return HttpResponseRedirect(reverse('proveedor_list'))
     return render(request, 'proveedor_eliminar.html', {'proveedor': proveedor})
+
+import re
 
 def proveedor_editar(request, pk):
     proveedor = get_object_or_404(Proveedor, pk=pk)
@@ -149,6 +189,21 @@ def proveedor_editar(request, pk):
         nombre = request.POST.get('nombre')
         apellido = request.POST.get('apellido')
         dni = request.POST.get('dni')
+        
+        
+        if len(nombre) > 50 or len(apellido) > 50:
+            error_message = "El nombre y el apellido no deben superar los 50 caracteres cada uno."
+            return render(request, 'proveedor_editar.html', {'error_message': error_message, 'proveedor': proveedor})
+        
+
+        if not re.match("^[0-9]+$", dni):
+            error_message = "El DNI debe contener solo números."
+            return render(request, 'proveedor_editar.html', {'error_message': error_message, 'proveedor': proveedor})
+        
+
+        if dni and int(dni) < 0:
+            error_message = "El DNI no puede ser un número negativo."
+            return render(request, 'proveedor_editar.html', {'error_message': error_message, 'proveedor': proveedor})
         
         if nombre and apellido and dni:
             proveedor.nombre = nombre
@@ -161,3 +216,9 @@ def proveedor_editar(request, pk):
             return render(request, 'proveedor_editar.html', {'error_message': error_message, 'proveedor': proveedor})
     
     return render(request, 'proveedor_editar.html', {'proveedor': proveedor})
+
+
+
+
+
+

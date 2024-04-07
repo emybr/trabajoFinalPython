@@ -17,21 +17,21 @@
             <p class="error">{{ error_message }}</p>
         {% endif %}
 
-        <form action="" method="POST">
+        <form id="producto_form" action="" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ nombre }}">
             </div>
 
             <div class="form-group">
                 <label for="precio">Precio:</label>
-                <input type="number" name="precio" id="precio" placeholder="Precio">
+                <input type="number" name="precio" id="precio" placeholder="Precio" value="{{ precio }}">
             </div>
 
             <div class="form-group">
                 <label for="stock">Stock:</label>
-                <input type="number" name="stock" id="stock" placeholder="Stock">
+                <input type="number" name="stock" id="stock" placeholder="Stock" value="{{ stock }}">
             </div>
 
             <div class="form-group">
@@ -50,5 +50,21 @@
     <div class="button">
         <button><a href="{% url 'index' %}">HOME</a></button>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("producto_form");
+            form.addEventListener("submit", function (event) {
+                var nombre = document.getElementById("nombre").value;
+                var precio = document.getElementById("precio").value;
+                var stock = document.getElementById("stock").value;
+
+                if (nombre.trim() === "" || precio.trim() === "" || stock.trim() === "") {
+                    alert("Por favor, complete todos los campos.");
+                    event.preventDefault(); 
+                }
+            });
+        });
+    </script>
 </body>
 </html>

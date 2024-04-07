@@ -16,19 +16,19 @@
         {% if error_message %}
             <p class="error">{{ error_message }}</p>
         {% endif %}
-        <form action="" method="POST">
+        <form id="proveedor_form" action="" method="POST">
             {% csrf_token %}
             <div class="input-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ nombre }}">
             </div>
             <div class="input-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+                <input type="text" name="apellido" id="apellido" placeholder="Apellido" value="{{ apellido }}">
             </div>
             <div class="input-group">
                 <label for="dni">DNI:</label>
-                <input type="number" name="dni" id="dni" placeholder="DNI">
+                <input type="number" name="dni" id="dni" placeholder="DNI" value="{{ dni }}">
             </div>
             <input type="submit" value="Crear">
         </form>
@@ -36,5 +36,21 @@
     <div class="boton-proveedor">
         <button><a href="{% url 'index' %}">HOME</a></button>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("proveedor_form");
+            form.addEventListener("submit", function (event) {
+                var nombre = document.getElementById("nombre").value;
+                var apellido = document.getElementById("apellido").value;
+                var dni = document.getElementById("dni").value;
+
+                if (nombre.trim() === "" || apellido.trim() === "" || dni.trim() === "") {
+                    alert("Por favor, complete todos los campos.");
+                    event.preventDefault(); // Evitar que el formulario se envíe
+                }
+            });
+        });
+    </script>
 </body>
 </html>
