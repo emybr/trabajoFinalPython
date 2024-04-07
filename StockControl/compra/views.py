@@ -48,20 +48,13 @@ def proveedor_create(request):
     return render(request, 'proveedor_create.html')
 
 
-
-
 def producto_list(request):
     productos = Producto.objects.all()
     return render(request, 'productos_list.html', {'productos': productos})
 
 
-from django.shortcuts import render, get_object_or_404
-from .models import Producto, Proveedor
-
-from django.shortcuts import render, get_object_or_404
-from .models import Producto, Proveedor
-
 def producto_create(request):
+    proveedores = Proveedor.objects.all()
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         precio = request.POST.get('precio')
@@ -81,7 +74,6 @@ def producto_create(request):
                     raise ValueError
             except ValueError:
                 error_message = "El precio debe ser un número válido y mayor que cero."
-                proveedores = Proveedor.objects.all()
                 return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
             
             try:
@@ -90,12 +82,10 @@ def producto_create(request):
                     raise ValueError
             except ValueError:
                 error_message = "El stock debe ser un número válido y mayor o igual que cero."
-                proveedores = Proveedor.objects.all()
                 return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
             
             if len(nombre) > 50:
                 error_message = "El nombre no puede exceder los 50 caracteres."
-                proveedores = Proveedor.objects.all()
                 return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
             
             proveedor = get_object_or_404(Proveedor, id=proveedor_id)
@@ -106,15 +96,12 @@ def producto_create(request):
                 stock=stock,
                 proveedor=proveedor
             )
-            return render(request, 'producto_create.html', {'producto': producto})
+            return render(request, 'producto_create.html', {'producto': producto, 'proveedores': proveedores})
         else:
             error_message = "Por favor, complete todos los campos."
-            proveedores = Proveedor.objects.all()
             return render(request, 'producto_create.html', {'error_message': error_message, 'nombre': nombre_guardado, 'precio': precio_guardado, 'stock': stock_guardado, 'proveedor_id': proveedor_id_guardado, 'proveedores': proveedores})
     else:
-        proveedores = Proveedor.objects.all()
         return render(request, 'producto_create.html', {'proveedores': proveedores})
-
 
     
 def producto_eliminar(request, pk):

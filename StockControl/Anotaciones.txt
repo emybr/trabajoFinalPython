@@ -1,0 +1,9 @@
+# Nombre:Emiliano
+# Apellido:Brizuela
+# Comision: c35-python-mintrabajo
+# github: https://github.com/emybr/trabajoFinalPython.git
+
+
+# Usuario ingreso admin
+# user:Guido
+# pass:Guido123456
